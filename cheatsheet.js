@@ -65,7 +65,7 @@ const user = {
 }
 
 // Para accede a alguna propiedad de nuestro objeto, se hará a traves del punto
-console.log(user.address.street);
+// console.log(user.address.street);
 
 // Arrays / Listas
 /**
@@ -87,7 +87,8 @@ const students = [
 
 console.log(students[1].surname);
 
-// FUNCIONES
+
+
 
 // Comparaciones / Asignaciones
 
@@ -159,3 +160,24 @@ const harrisonFord = {
 }
 
 console.log("Es negro Harrison Ford? " + harrisonFord.isBlack);
+
+// Valores truthy y falsy
+// Todos los valores siguientes retornan false
+
+Boolean(false);
+Boolean(0);
+Boolean(-0);
+Boolean(0n);
+Boolean("");
+Boolean(``);
+Boolean(null);
+Boolean(undefined);
+Boolean(NaN);
+
+// Cualquier otro valor retorna true
+
+Boolean(true);
+Boolean([]);
+Boolean({});
+Boolean("Hola mundo");
+Boolean(new Date());

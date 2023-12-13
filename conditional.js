@@ -22,3 +22,9 @@ if (!users) {
 } else {
     console.log(users);
 }
+
+if (Boolean(users) === false) {
+    console.log("No hay usuarios");
+} else {
+    console.log(users);
+}
