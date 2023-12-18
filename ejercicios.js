@@ -1,3 +1,7 @@
+// console.log(
+// 	" Mostrar por consola a traves de los bucles while, do while y for numeros del 0 al 25"
+// );
+
 function consoleNumberWhile() {
 	let i = 0;
 
@@ -24,7 +28,9 @@ function consoleNumberFor() {
 	}
 }
 
-// Hacer una cuenta atras desde 10 hasta 0 y al final felicitar el año nuevo
+// console.log(
+// 	"Hacer una cuenta atras desde 10 hasta 0 y al final felicitar el año nuevo"
+// );
 
 function cuentaAtrasWhile() {
 	console.log("<-------------------While-------------->");
@@ -65,6 +71,40 @@ function cuentaAtrasFor() {
 	}
 }
 
+// console.log(
+// 	"Funcion que reciba un numero e imprma todos los numeros hasta el X"
+// );
+
+function cuentaAtrasWhile2(number, min) {
+	console.log("<-------------------While-------------->");
+	while (number > min) {
+		console.log(number);
+
+		number--;
+	}
+}
+
+function cuentaAtrasDoWhile2(number, min) {
+	console.log("<-------------------Do While-------------->");
+
+	do {
+		console.log(number);
+
+		number--;
+	} while (number > min);
+}
+
+function cuentaAtrasFor2(number) {
+	console.log("<-------------------For-------------->");
+	for (let i = number; i >= 0; i--) {
+		console.log(i);
+	}
+}
+
+// console.log(
+// 	"Recibe un numero por parametro e imprime todos los numeros incluyendose a el mismo hasta el "
+// );
+
 function printNumberWhile(num) {
 	let i = num;
 
@@ -82,11 +122,16 @@ function printNumberDoWhile(num) {
 		i--;
 	} while (i >= 0);
 }
+
 function printNumberFor(num) {
 	for (let i = num; i >= 0; i--) {
 		console.log(i);
 	}
 }
+
+// console.log(
+// 	"Recibe una letra y un numero e imprime por consola la letra el numero de veces que le hayamos pasado"
+// );
 
 function printLetterWhile(letter, num) {
 	let i = 0;
@@ -120,6 +165,12 @@ function printLetterFor(letter, num) {
 
 	console.log(result);
 }
+
+// console.log(
+// 	"Crear una funcion que reciba un array de numeros los sume y muestre por consola la media aritmetica"
+// );
+
+let grades = [8, 4, 9, 7, 6, 8];
 
 function averageWhile(grades) {
 	let total = 0;
@@ -159,28 +210,21 @@ function averageFor(grades) {
 
 	console.log(average);
 }
-// console.log(
-// 	" Mostrar por consola a traves de los bucles while, do while y for numeros del 0 al 25"
-// );
 
 // console.log(
-// 	"Hacer una cuenta atras desde 10 hasta 0 y al final felicitar el año nuevo"
+// 	`Escribir una funcion que reciba una cantidad a invertir,
+// el interes anual y el numero de años y muestre por consola
+// el capital obtenido en la inversion cada año de la inversion`
 // );
 
-// console.log(
-// 	"Recibe un numero por parametro e imprime todos los numeros incluyendose a el mismo hasta el "
-// );
+function getInversion(amount, interest, year) {
+	let amountWithInterest = amount;
+	let percentaje = interest / 100;
+	for (let i = 1; i <= year; i++) {
+		amountWithInterest = amountWithInterest + amountWithInterest * percentaje;
 
-// console.log(
-// 	"Recibe una letra y un numero e imprime por consola la letra el numero de veces que le hayamos pasado"
-// );
-
-console.log(
-	"Crear una funcion que reciba un array de numeros los sume y muestre por consola la media aritmetica"
-);
-
-let grades = [8, 4, 9, 7, 6, 8];
-
-averageWhile(grades);
-averageDoWhile(grades);
-averageFor(grades);
+		console.log(
+			`El dinero obtenido en el año ${i} es ${amountWithInterest.toFixed(2)}`
+		);
+	}
+}
