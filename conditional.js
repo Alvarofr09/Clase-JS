@@ -31,7 +31,7 @@ if (Boolean(users) === false) {
 
 // Ejemplo else if
 
-const grade = 85;
+const grades = 85;
 
 if (grades >= 90) {
 	console.log("Aprobaste con sobresaliente");
@@ -51,4 +51,40 @@ if (age >= 65) {
 	console.log("Cotiza");
 } else {
 	console.log("A estudiar");
+}
+
+// Estructura switch
+
+let fruit = "melon";
+switch (fruit) {
+	case "melon":
+		console.log("Que rico el melon en diciembre");
+		break;
+
+	case "papaya":
+		console.log("Que fruta tan tropical");
+		break;
+
+	case "sandia":
+		console.log("Has elegido la sandia");
+		break;
+
+	default:
+		break;
+}
+
+switch (true) {
+	case grades >= 90:
+		console.log("Aprobaste con sobresaliente");
+		break;
+	case grades >= 70:
+		console.log("Aprobaste con notable");
+		break;
+	case grades >= 50:
+		console.log("Aprobaste con suficiente");
+		break;
+
+	default:
+		console.log("Suspendiste amigo");
+		break;
 }
