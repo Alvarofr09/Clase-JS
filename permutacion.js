@@ -13,17 +13,18 @@ function generarNumeroDeTresCifras() {
 }
 
 function permutar() {
-	const numeroAleatorio = generarNumeroDeTresCifras();
+	const contraseña = generarNumeroDeTresCifras();
 	let contador = 0;
-	console.log(numeroAleatorio);
+
 	for (let i = 1; i < 4; i++) {
 		for (let j = 1; j < 4; j++) {
 			for (let k = 1; k < 4; k++) {
 				let numero = `${i}${j}${k}`;
 				contador++;
 
-				if (numeroAleatorio == numero) {
-					console.log(`Has acertado el numero al intento numero: ${contador}`);
+				if (contraseña == numero) {
+					console.log(`La contraseña es: ${contraseña}`);
+					console.log(`Lo has conseguido en el intento: ${contador}`);
 				}
 			}
 		}
