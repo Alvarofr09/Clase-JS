@@ -1,6 +1,17 @@
+/**
+ * Funcion para generar un numero aleatorio
+ * @returns Un numero aleatorio de como minimo valor 1 y max 3.
+ */
+
 function generarNumeroAleatorio() {
 	return Math.floor(Math.random() * 3) + 1;
 }
+
+/**
+ * Funcion que usa la funcion de generar un numero aleatorio y
+ * crea uno de 3 cifras
+ * @returns El numero de 3 cifras aleatorias.
+ */
 
 function generarNumeroDeTresCifras() {
 	const cifra1 = generarNumeroAleatorio();
@@ -12,6 +23,11 @@ function generarNumeroDeTresCifras() {
 	return numeroDeTresCifras;
 }
 
+/**
+ * Funcion que genera una contraseña con la funcion generarNumeroDeTresCifras()
+ * y la mira siguiendo una permutacion de como maximo el numero 3 en cualquier
+ * posicion y te dice cuantos intentos te ha tomado hacerlo.
+ */
 function permutar() {
 	const contraseña = generarNumeroDeTresCifras();
 	let contador = 0;
