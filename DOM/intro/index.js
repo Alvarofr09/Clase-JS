@@ -51,3 +51,34 @@ console.log(anchorList);
 
 const secondAnchor = document.querySelectorAll("#wrapper a")[1];
 console.log(secondAnchor);
+
+const thirdAnchor = document.querySelectorAll("#wrapper a")[2];
+
+const fithAnchor = document.createElement("a");
+fithAnchor.setAttribute("class", "link");
+fithAnchor.setAttribute("href", "#");
+fithAnchor.textContent = "Quinto hijo";
+divs[1].append(fithAnchor);
+// divs[1].insertBefore(fithAnchor, secondAnchor);
+
+const fourthAnchor = document.createElement("a");
+fourthAnchor.setAttribute("class", "link");
+fourthAnchor.setAttribute("href", "#");
+fourthAnchor.textContent = "Cuarto hijo";
+divs[1].insertBefore(fourthAnchor, fithAnchor);
+
+const tag = document.createElement("p"); //Crea un elemento hmtl
+tag.textContent = "prueba";
+
+h1.insertAdjacentElement("afterend", tag); // Inserta un elemento "tag" en la posicion indicada ("beforebegin", "afterbegin", "beforeend", "afterend")
+h1.insertAdjacentHTML("afterend", '<a href="#" class = "link">Hola</a>'); // Inserta una cadena de texto en la posicion indicada
+
+/**
+ * 	beforebegin
+ * 		<p>
+ * 			afterbegin
+ * 		"Texto"
+ * 			beforeend
+ * 		</p>
+ * 	afterend
+ */
