@@ -119,11 +119,88 @@ function handleEvent(e) {
 	console.log(`Has dado click en ${e.currentTarget.nodeName}`);
 }
 
-function handleEventStop(e) {
+/*function handleEventStop(e) {
 	e.stopPropagation();
 	console.log(`Has dado click en ${e.currentTarget.nodeName}`);
 }
 
 buttonShow.addEventListener("click", handleEventStop);
 section.addEventListener("click", handleEvent);
+document.body.addEventListener("click", handleEvent);*/
+
+/**
+ * stopImmediatePropagation() hace practicamente lo mismo que stopPropagation con la diferencia
+ * que este metodo evita que un elemento tenga mas de un manejador de evento
+ */
+
+function handleEventStop(e) {
+	e.stopImmediatePropagation();
+	console.log(`Has dado click en ${e.currentTarget.nodeName}`);
+}
+
+/*buttonShow.addEventListener("click", handleEventStop); // Despues de este listener no se va a poder añadir ninguno mas
+section.addEventListener("click", handleEvent);
 document.body.addEventListener("click", handleEvent);
+
+buttonShow.addEventListener("click", function () {
+	alert("Hola mundo");
+});*/
+
+// Fase de captura
+
+/**
+ * En la fase de captura los eventos se capturan de manera descendente, esta fase se activa
+ * pasandole un tercer parametro a un eventListener como un objeto con la propiedad capture
+ */
+
+// buttonShow.addEventListener("click", handleEvent, { capture: true });
+// section.addEventListener("click", handleEvent, { capture: true });
+// document.body.addEventListener("click", handleEvent, { capture: true });
+
+// ---------------------- matches()
+
+/**
+ * Este se utiliza en cualquier nodo de tipo elemento y recibe un
+ * selector de tipo css como parametro y va a comrpobar si el parametro css
+ * coincide con el nodo acual, si coincide retornara true, sino false.
+ */
+const elements = document.querySelectorAll("[data-id]");
+// console.log(elements);
+
+for (element of elements) {
+	// console.log(element);
+	const currentElement = element.matches('[data-id="button-show"]');
+	console.log(currentElement);
+	if (currentElement) {
+		console.log(element);
+		console.log(
+			`El elemento ${element.nodeName} contiene el valor de button-show en su atributo`
+		);
+	}
+}
+
+//---------------clostes()
+console.log(input.closest(".wrapper"));
+
+//--------------- Event Delegation
+
+/**
+ * Nos permite aprovecharnos de la propagacion de eventos para determinar un manejador
+ * de eventos a un contenedor de eventos que haga una accion determinada por cada nodo que contiene.
+ * En lugar de declarar un manejador de eventos por cada nodo vamos a declarar un manejador de eventos
+ * global, esto optimiza el rendimiento y ademas reduce la cantidad de manejadores que se implementan, en
+ * lugar de poner un manejador por cada boton que haremos uno para la seccion que contiene a los botones, aprovechando
+ * el event bubbling o la propagacion de eventos, haciendo que cada boton cambie el bgcolor de la seccion
+ */
+const sectionColor = document.querySelector(".section");
+
+function eventDelegation(e) {
+	// console.log(e);
+	if (e.target.matches(".button-color")) {
+		const color = e.target.getAttribute("data-color");
+
+		e.currentTarget.style.backgroundColor = color;
+	}
+}
+
+sectionColor.addEventListener("click", eventDelegation);
