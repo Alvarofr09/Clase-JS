@@ -53,8 +53,9 @@ body {
 	padding: 0;
 }
 
-li {
+.list-item {
 	display: flex;
+	align-items: center;
 	justify-content: space-between;
 	border: 1px solid black;
 	padding: 20px;
@@ -62,6 +63,9 @@ li {
 
 .tachado {
 	text-decoration: line-through;
+}
+
+.bg-completed {
 	background-color: #ccc;
 }
 

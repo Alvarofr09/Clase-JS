@@ -62,24 +62,29 @@ function createTask(task) {
 	// Añadir un evento de doble click al li
 	// addDashedClass(li);
 
+	listContainer.insertAdjacentHTML(
+		"afterbegin",
+		`
+	<li class = "list-item">
+		<span onclick = "completedTask(this)">${task}</span>
+		<button onclick = "removeTask(this)" class = "delete" >X</button>
+	</li>
+	`
+	);
 	// Añadir un evento de click al boton
 	addRemoveEvent(button);
 
 	// Añadirlo a la lista como primer elemento
-	listContainer.prepend(li);
-	li.append(button);
+	// listContainer.prepend(li);
+	// li.append(button);
 }
 
-function addDashedClass(element) {
-	element.addEventListener("dblclick", function () {
-		element.remove();
-		mesagge();
-	});
+function completedTask(element) {
+	element.classList.toggle("tachado");
+	element.parentElement.classList.toggle("bg-completed");
 }
 
-function addRemoveEvent(element) {
-	element.addEventListener("click", function () {
-		element.parentElement.remove();
-		mesagge();
-	});
+function removeTask(element) {
+	element.parentElement.remove();
+	mesagge();
 }
