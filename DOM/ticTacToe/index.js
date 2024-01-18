@@ -46,8 +46,10 @@ function pintarCelda(celda) {
 }
 
 function verificarResultado() {
-	if (hayGanador()) {
-		mostrarResultado(hayGanador());
+	const ganador = hayGanador();
+
+	if (ganador) {
+		mostrarResultado(ganador);
 	}
 
 	if (verificarEmpate()) {
@@ -74,9 +76,9 @@ function hayGanador() {
 		const celdaC = document.querySelector(`.cell:nth-child(${c + 1})`);
 
 		if (
-			celdaA.classList.contains("cicle") &&
-			celdaB.classList.contains("cicle") &&
-			celdaC.classList.contains("cicle")
+			celdaA.classList.contains("circle") &&
+			celdaB.classList.contains("circle") &&
+			celdaC.classList.contains("circle")
 		) {
 			return "circle";
 		}
@@ -122,8 +124,9 @@ function reiniciarJuego() {
 function mostrarResultado(resultado) {
 	if (verificarEmpate()) {
 		endgameResult.textContent = "Ha sido " + resultado;
+	} else {
+		endgameResult.textContent = "Ha ganado " + resultado;
 	}
-	endgameResult.textContent = "Ha ganado " + resultado;
 	endgameSection.classList.add("show");
 }
 
