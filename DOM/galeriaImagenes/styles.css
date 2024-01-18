@@ -1,0 +1,24 @@
+.contenedor-imagen {
+	border: 1px solid #ccc;
+	padding: 10px;
+	margin-bottom: 20px;
+}
+
+.contenedor-imagen img {
+	width: 50%;
+	max-height: 250px;
+	height: auto;
+}
+
+.contenedor-comentarios {
+	margin-top: 10px;
+}
+
+.lista-comentarios {
+	list-style: none;
+	padding: 0;
+}
+
+template {
+	display: block;
+}

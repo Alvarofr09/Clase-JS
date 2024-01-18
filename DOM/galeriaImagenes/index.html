@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Galería de Imágenes con Comentarios</title>
+		<link rel="stylesheet" type="text/css" href="styles.css" />
+	</head>
+	<body>
+		<h1>Galería de Imágenes</h1>
+		<div id="galeria">
+			<!-- Las imágenes se insertarán aquí desde JavaScript -->
+		</div>
+		<template id="plantillaImagen">
+			<div class="contenedor-imagen">
+				<img src="" alt="Imagen de galería" />
+				<div class="contenedor-comentarios">
+					<input
+						type="text"
+						class="comentario-input"
+						placeholder="Añade un comentario..."
+					/>
+					<button class="btn-comentar">Comentar</button>
+					<ul class="lista-comentarios">
+						<!-- Los comentarios se añadirán aquí -->
+					</ul>
+				</div>
+			</div>
+		</template>
+
+		<script src="script.js"></script>
+	</body>
+</html>
