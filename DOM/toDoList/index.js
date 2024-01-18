@@ -1,82 +1,70 @@
 const listContainer = document.querySelector(".list-container");
-const textInput = document.querySelector(".input");
+const input = document.querySelector(".input");
 const button = document.querySelector(".button");
+const form = document.querySelector(".form");
 
 // const lists = document.querySelectorAll("li");
 
-function crearList(texto) {
+form.addEventListener("submit", manejarSubmit);
+mensaje();
+
+function mensaje() {
+	const h3 = document.createElement("h3");
+	h3.classList.add("task-message");
+
+	h3.textContent = listContainer.firstElementChild
+		? "Tareas por hacer"
+		: "No hay tareas aun";
+
+	const previousMessage = document.querySelector(".task-message");
+
+	if (previousMessage) {
+		previousMessage.replaceWith(h3);
+	}
+
+	listContainer.before(h3);
+}
+
+function crearTarea(tarea) {
 	const li = document.createElement("li");
-	const text = document.createTextNode(texto);
 
 	const button = document.createElement("button");
 	button.classList.add("delete");
-	button.append(document.createTextNode("X"));
+	button.textContent = "X";
 
-	li.append(text);
+	li.textContent = tarea;
+
+	listContainer.prepend(li);
 	li.append(button);
 
-	return li;
+	// addDashedClass(li);
+	addRemoveEvent(button);
 }
 
-function meterList() {
-	if (textInput.value !== "") {
-		const li = crearList(textInput.value);
-
-		const primerElemento = listContainer.firstChild;
-
-		listContainer.insertBefore(li, primerElemento);
-
-		textInput.value = "";
-		actualizarLista();
-	}
-}
-
-function comprobarTareas() {
-	const mensajeExistente = document.querySelector(".mensaje-tareas");
-
-	if (mensajeExistente) {
-		mensajeExistente.remove();
-	}
-
-	if (listContainer.childElementCount > 0) {
-		listContainer.insertAdjacentHTML(
-			"beforebegin",
-			"<p class='mensaje-tareas'>Tareas por hacer</p>"
-		);
-	} else {
-		listContainer.insertAdjacentHTML(
-			"beforebegin",
-			"<p class='mensaje-tareas'>Aun no hay tareas</p>"
-		);
-	}
-}
-
-function actualizarLista() {
-	let buttons = document.querySelectorAll(".delete");
-
-	console.log(buttons);
-
-	buttons.forEach(function (button) {
-		button.addEventListener("click", function (e) {
-			e.target.parentElement.remove();
-			e.stopImmediatePropagation();
-			comprobarTareas();
-		});
-	});
-
-	let lists = document.querySelectorAll("li");
-
-	lists.forEach(function (li) {
-		li.addEventListener("click", function (e) {
-			li.classList.toggle("tachado");
-			e.stopImmediatePropagation();
-		});
-	});
-}
-
-comprobarTareas();
-button.addEventListener("click", function (e) {
+function manejarSubmit(e) {
 	e.preventDefault();
-	meterList(textInput.value);
-	comprobarTareas();
-});
+
+	const newTodo = input.value;
+
+	if (!newTodo) {
+		return;
+	}
+
+	crearTarea(newTodo);
+	this.reset();
+	mensaje();
+}
+
+function addDashedClass(element) {
+	element.addEventListener("dblclick", function () {
+		element.remove();
+		mensaje();
+	});
+}
+
+function addRemoveEvent(element) {
+	element.addEventListener("click", function () {
+		element.parentElement.remove();
+		mensaje();
+	});
+}
