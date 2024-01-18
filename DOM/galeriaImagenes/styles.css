@@ -5,7 +5,7 @@
 }
 
 .contenedor-imagen img {
-	width: 50%;
+	width: 250px;
 	max-height: 250px;
 	height: auto;
 }
@@ -21,4 +21,21 @@
 
 template {
 	display: block;
+}
+
+/* li {
+	display: flex;
+	justify-content: space-between;
+	border: 1px solid black;
+	padding: 20px;
+} */
+
+.delete {
+	width: 30px;
+	height: 20px;
+	background: darkred;
+	color: white;
+	border: 1px solid black;
+	border-radius: 5px;
+	margin-left: 10px;
 }
