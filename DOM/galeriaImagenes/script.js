@@ -29,6 +29,25 @@ imagenPorPoner.addEventListener("change", function (e) {
 	}
 });
 
+// Manejar eventos de arrastrar y soltar
+galery.addEventListener("dragover", function (event) {
+	event.preventDefault();
+});
+
+galery.addEventListener("drop", function (event) {
+	event.preventDefault();
+
+	const file = event.dataTransfer.files[0];
+
+	if (file) {
+		// Crear una URL para la imagen arrastrada
+		const imageUrl = URL.createObjectURL(file);
+
+		// Crear una nueva imagen con la URL
+		crearImagen(imageUrl, "Imagen arrastrada");
+	}
+});
+
 // Crear la imagen creando el template desde 0
 function crearImagen(fotoLink, altText) {
 	// Crear template de la foto y añadirle el id
