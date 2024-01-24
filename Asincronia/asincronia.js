@@ -104,3 +104,5 @@ promise
 	.finally(() => {
 		console.log("Esto se ejecuta SIEMPRE");
 	});
+
+// Fetch API --> Promesas
