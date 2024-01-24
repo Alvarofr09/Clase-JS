@@ -26,6 +26,26 @@
 
 			<!-- Puntos por miembro -->
 			<div id="memberPoints"></div>
+
+			<!-- Agrega esto en el HTML -->
+			<template id="taskFormTemplate">
+				<h3>Añade tareas a miembros</h3>
+				<input type="text" placeholder="Nueva Tarea" name="tarea" required />
+				<select name="nombre" required>
+					<option value="" disabled selected>
+						Selecciona miembro de la familia
+					</option>
+				</select>
+				<select name="ratings" required>
+					<option value="" disabled selected>
+						Selecciona valor de la tarea
+					</option>
+					${ratings.map(value => `
+					<option value="${value}">${value}</option>
+					`).join('')}
+				</select>
+				<button type="submit" class="button">Generar tarea</button>
+			</template>
 		</div>
 		<script src="index.js"></script>
 	</body>
