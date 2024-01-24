@@ -2,7 +2,7 @@ const nameForm = document.querySelector("#personNameForm");
 const taskForm = document.querySelector("#taskForm");
 const taskList = document.querySelector("#taskList");
 const memberPoints = document.querySelector("#memberPoints");
-const miembrosFamilia = ["Selecciona el valor de la tarea"];
+const miembrosFamilia = ["Selecciona el miembro para la tarea"];
 const ratings = [
 	"Selecciona el valor de la tarea",
 	1,
@@ -16,7 +16,7 @@ const ratings = [
 	9,
 	10,
 ];
-const memberPointsData = {}; // Objeto para rastrear los puntos de cada miembro
+let memberPointsData = {}; // Objeto para rastrear los puntos de cada miembro
 
 let isTaskFormCreated = false;
 
@@ -140,6 +140,8 @@ function createRanking() {
 	// Crear una lista ordenada para el ranking
 	const rankingList = document.createElement("ol");
 
+	sortMember(memberPointsData);
+
 	// Iterar sobre los miembros y agregar puntos al ranking
 	for (const member in memberPointsData) {
 		const listItem = document.createElement("p");
@@ -178,4 +180,31 @@ function completedTask(element) {
 	} else {
 		addToPoints(member, -valorTarea);
 	}
+}
+
+function sortMember(object) {
+	const memberArray = Object.entries(object);
+	const n = memberArray.length;
+
+	for (let i = 0; i < n - 1; i++) {
+		for (let j = 0; j < n - i - 1; j++) {
+			const points1 = memberArray[j][1];
+			const points2 = memberArray[j + 1][1];
+
+			if (points1 < points2) {
+				// Intercambiar elementos si el primero es menor que el segundo
+				const temp = memberArray[j];
+				memberArray[j] = memberArray[j + 1];
+				memberArray[j + 1] = temp;
+			}
+		}
+	}
+
+	// Limpiar el contenido actual de memberPointsData
+	memberPointsData = {};
+
+	// Actualizar memberPointsData con el nuevo orden
+	memberArray.forEach(([member, points]) => {
+		memberPointsData[member] = points;
+	});
 }
