@@ -50,18 +50,12 @@ function createTaskForm() {
 	const inputMember = document.createElement("select");
 	inputMember.name = "nombre";
 	inputMember.required = true; // Agrega esta línea
-	const option = document.createElement("option");
-	option.text = "Selecciona miembro de la familia";
-	inputMember.append(option);
 	addToSelect(inputMember, miembrosFamilia);
 	taskForm.append(inputMember);
 
 	const inputValue = document.createElement("select");
 	inputValue.name = "ratings";
 	inputValue.required = true; // Agrega esta línea
-	const optionValue = document.createElement("option");
-	optionValue.text = "Selecciona valor de la tarea";
-	inputValue.append(optionValue);
 	addToSelect(inputValue, ratings);
 	taskForm.appendChild(inputValue);
 
