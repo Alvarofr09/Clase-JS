@@ -33,7 +33,7 @@ async function createUsersCards() {
 		image.classList.add("user_card");
 		image.src = user.avatar;
 
-		const name = document.createElement("h3");
+		const name = document.createElement("h4");
 		name.classList.add("user_name");
 		name.textContent = `${user.first_name} ${user.last_name}`;
 
