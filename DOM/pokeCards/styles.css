@@ -1,3 +1,20 @@
+/* Definición de variables de colores para tipos de Pokémon */
+:root {
+	--color-water: #6890f0;
+	--color-fire: #f08030;
+	--color-grass: #78c850;
+	--color-electric: #f8d030;
+	--color-ice: #98d8d8;
+	--color-fighting: #c03028;
+	--color-bug: #a8b820;
+	--color-poison: #a040a0;
+	--color-fairy: #ee99ac;
+	--color-steel: #b8b8d0;
+	--color-ground: #e0c068;
+	--color-rock: #b8a038;
+	--color-flying: #a890f0;
+}
+
 .container {
 	display: flex;
 	flex-wrap: wrap;
@@ -14,6 +31,21 @@
 
 .card_top {
 	position: relative;
+	height: 50%;
+}
+
+.card_image_content {
+	width: 100%;
+	height: 100%;
+	border-radius: 15px;
+	border: solid 1px black;
+	/* margin: 15px; */
+}
+
+.card_image {
+	object-fit: contain;
+	width: 100%;
+	height: 100%;
 }
 
 .pokemon_number {
@@ -21,6 +53,112 @@
 	top: 0;
 	right: 0;
 	padding: 15px;
-	font-size: 60px;
+	font-size: 18px;
 	color: red;
+	background-color: antiquewhite;
+	width: 1px;
+	height: 1px;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.card_bot {
+	height: 45%;
+	margin: 10px;
+	background-color: antiquewhite;
+	border-radius: 15px;
+	padding: 5px;
+}
+
+.card_content_type {
+	display: flex;
+	flex-direction: row;
+}
+
+/* Estilos para contenedores que NO tienen un hijo con la clase .pokemon_type_secondary */
+.card_content_type:not(:has(.pokemon_type_secondary)) {
+	justify-content: center;
+}
+
+/* Estilos para contenedores que tienen un hijo con la clase .pokemon_type_secondary */
+.card_content_type:has(.pokemon_type_secondary) {
+	justify-content: space-evenly;
+}
+
+.type {
+	padding: 5px;
+	border: 1px solid black;
+	margin-top: 20px;
+	min-width: 80px;
+	border-radius: 5px;
+	min-height: 25px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* Estilo para el tipo Agua */
+.water {
+	background-color: var(--color-water);
+}
+
+/* Estilo para el tipo Fuego */
+.fire {
+	background-color: var(--color-fire);
+}
+
+/* Estilo para el tipo Planta */
+.grass {
+	background-color: var(--color-grass);
+}
+
+/* Estilo para el tipo Eléctrico */
+.electric {
+	background-color: var(--color-electric);
+}
+
+/* Estilo para el tipo Hielo */
+.ice {
+	background-color: var(--color-ice);
+}
+
+/* Estilo para el tipo Lucha */
+.fighting {
+	background-color: var(--color-fighting);
+}
+
+/* Estilo para el tipo Bicho */
+.bug {
+	background-color: var(--color-bug);
+}
+
+/* Estilo para el tipo Veneno */
+.poison {
+	background-color: var(--color-poison);
+}
+
+/* Estilo para el tipo Hada */
+.fairy {
+	background-color: var(--color-fairy);
+}
+
+/* Estilo para el tipo Acero */
+.steel {
+	background-color: var(--color-steel);
+}
+
+/* Estilo para el tipo Tierra */
+.ground {
+	background-color: var(--color-ground);
+}
+
+/* Estilo para el tipo Roca */
+.rock {
+	background-color: var(--color-rock);
+}
+
+.flying {
+	background-color: var(--color-flying);
 }

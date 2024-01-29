@@ -1,0 +1,15 @@
+export const colors = {
+	water: "#6890f0",
+	fire: "#f08030",
+	grass: "rgb(120, 200, 80)",
+	electric: "#f8d030",
+	ice: "#98d8d8",
+	fighting: "#c03028",
+	bug: "#a8b820",
+	poison: "#a040a0",
+	fairy: "#ee99ac",
+	steel: "#b8b8d0",
+	ground: "#e0c068",
+	rock: "#b8a038",
+	flying: "#a890f0",
+};
