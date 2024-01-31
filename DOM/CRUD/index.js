@@ -28,7 +28,21 @@ async function getUsers() {
 				nameInputEditForm.value = users[i].first_name;
 			});
 
-			deleteButton.addEventListener("click", function (e) {});
+			deleteButton.addEventListener("click", async function (e) {
+				try {
+					const response = await fetch(
+						`https://reqres.in/api/users/${users[i].id}`,
+						{
+							method: "DELETE",
+						}
+					);
+					if (response.status === 204) {
+						alert("Usuario eliminado");
+					}
+				} catch (error) {
+					console.log(error);
+				}
+			});
 
 			div.append(p, editButton, deleteButton);
 
