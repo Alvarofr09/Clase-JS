@@ -2,6 +2,8 @@ const createForm = document.querySelector("#createUserForm");
 const userContainer = document.querySelector("#userContainer");
 const updateForm = document.querySelector("#updateUserForm");
 
+const nameEditForm = document.querySelector('[data-name = "first_name"]');
+
 async function getUsers() {
 	try {
 		const response = await fetch("https://reqres.in/api/users");
@@ -20,14 +22,13 @@ async function getUsers() {
 			const deleteButton = document.createElement("button");
 			deleteButton.textContent = "Eliminar";
 
-			const formData = Object.fromEntries(new FormData(updateForm));
-
-			editButton.addEventListener("click", function () {
+			editButton.addEventListener("click", function (e) {
+				e.preventDefault();
 				updateForm.classList.toggle("hide");
 				formData.first_name = user[i].first_name;
 			});
 
-			deleteButton.addEventListener("click", function () {});
+			deleteButton.addEventListener("click", function (e) {});
 
 			div.append(p, editButton, deleteButton);
 
