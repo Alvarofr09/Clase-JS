@@ -1,7 +1,7 @@
 export const colors = {
 	water: "#6890f0",
 	fire: "#f08030",
-	grass: "rgb(120, 200, 80)",
+	grass: "#78c850",
 	electric: "#f8d030",
 	ice: "#98d8d8",
 	fighting: "#c03028",
@@ -12,4 +12,9 @@ export const colors = {
 	ground: "#e0c068",
 	rock: "#b8a038",
 	flying: "#a890f0",
+	normal: "#a8a878",
+	psychic: "#f85888",
+	ghost: "#705898",
+	dragon: "#7038f8",
+	dark: "#705848",
 };
