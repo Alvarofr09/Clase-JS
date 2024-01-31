@@ -71,7 +71,11 @@ async function handleRegisterSubmit(e) {
 
 		console.log(response.status);
 		if (response.status >= 200 && response.status <= 300) {
-			document.location.href = "../products/index.html";
+			alert("Usuario creado a la perfeccion");
+			this.reset();
+
+			const messageError = document.querySelector(".error");
+			if (messageError) messageError.remove();
 		} else {
 			const messageError = document.querySelector(".error");
 			if (!messageError) {
