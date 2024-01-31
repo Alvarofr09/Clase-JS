@@ -6,13 +6,6 @@ const urlAuthUser = "https://api.escuelajs.co/api/v1/auth/login";
 login.addEventListener("submit", handleLoginSubmit);
 register.addEventListener("submit", handleRegisterSubmit);
 
-// async function getData(url) {
-// 	const response = await fetch(url);
-// 	const data = await response.json();
-
-// 	return data;
-// }
-
 async function handleLoginSubmit(e) {
 	try {
 		e.preventDefault();
