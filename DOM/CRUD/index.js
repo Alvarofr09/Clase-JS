@@ -26,6 +26,10 @@ async function getUsers() {
 			});
 
 			deleteButtonButton.addEventListener("click", function () {});
+
+			div.append(p, editButton, deleteButton);
+
+			userContainer.append(div);
 		}
 	} catch (error) {}
 }
