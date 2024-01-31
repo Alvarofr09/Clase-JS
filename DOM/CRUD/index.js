@@ -56,6 +56,9 @@ async function getUsers() {
 
 getUsers();
 
-updateForm.addEventListener("submit", async function () {
-	const response = await fetch("https://reqres.in/api/users");
+updateForm.addEventListener("submit", async function (e) {
+	e.preventDefault();
+	const userId = document.querySelector("[data-id]");
+	console.log(userId.dataset.id);
+	// const response = await fetch("https://reqres.in/api/users");
 });
