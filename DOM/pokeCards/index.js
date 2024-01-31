@@ -9,9 +9,7 @@ async function getData(url) {
 	return data;
 }
 
-async function createPokemonCards() {
-	const quantity = 10;
-
+async function createPokemonCards(quantity) {
 	for (let i = 1; i <= quantity; i++) {
 		const pokemon = await getData(`${baseUrl}${i}/`);
 		console.log(pokemon);
@@ -53,4 +51,11 @@ async function createPokemonCards() {
 	}
 }
 
-createPokemonCards();
+async function getPokemons(url) {
+	const data = getData(url);
+	console.log(data);
+}
+
+getPokemons(baseUrl);
+
+// createPokemonCards(10);
