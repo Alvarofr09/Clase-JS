@@ -25,6 +25,7 @@ async function getUsers() {
 			editButton.addEventListener("click", function (e) {
 				e.preventDefault();
 				updateForm.classList.toggle("hide");
+				nameInputEditForm.setAttribute("data-id", users[i].id);
 				nameInputEditForm.value = users[i].first_name;
 			});
 
@@ -55,4 +56,6 @@ async function getUsers() {
 
 getUsers();
 
-updateForm.addEventListener("submit", async function () {});
+updateForm.addEventListener("submit", async function () {
+	const response = await fetch("https://reqres.in/api/users");
+});
