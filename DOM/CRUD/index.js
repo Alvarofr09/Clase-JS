@@ -17,6 +17,10 @@ async function getUsers() {
 
 			const deleteButton = document.createElement("button");
 			deleteButton.textContent = "Eliminar";
+
+			editButton.addEventListener("click", function () {});
+
+			deleteButtonButton.addEventListener("click", function () {});
 		}
 	} catch (error) {}
 }
