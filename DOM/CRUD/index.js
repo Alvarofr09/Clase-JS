@@ -31,7 +31,7 @@ function createUserContainer(user) {
 			if (response.status === 204) {
 				alert("Usuario eliminado");
 				const userToDelete = document.querySelector(
-					`[data-userid = "${users.id}"]`
+					`[data-userid = "${user.id}"]`
 				);
 				userToDelete.parentElement.remove();
 			}
