@@ -22,6 +22,7 @@ async function getUsers() {
 
 			editButton.addEventListener("click", function () {
 				updateForm.classList.toggle("hide");
+				formData.first_name = user[i].first_name;
 			});
 
 			deleteButtonButton.addEventListener("click", function () {});
