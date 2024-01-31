@@ -4,6 +4,47 @@ const updateForm = document.querySelector("#updateUserForm");
 
 const nameInputEditForm = document.querySelector('[data-name = "first_name"]');
 
+function createUserContainer(user) {
+	const div = document.createElement("div");
+	const p = document.createElement("p");
+	p.setAttribute("data-userId", user.id);
+	p.textContent = user.first_name;
+
+	const editButton = document.createElement("button");
+	editButton.textContent = "Editar";
+
+	const deleteButton = document.createElement("button");
+	deleteButton.textContent = "Eliminar";
+
+	editButton.addEventListener("click", function (e) {
+		e.preventDefault();
+		updateForm.classList.toggle("hide");
+		nameInputEditForm.setAttribute("data-id", user.id);
+		nameInputEditForm.value = user.first_name;
+	});
+
+	deleteButton.addEventListener("click", async function (e) {
+		try {
+			const response = await fetch(`https://reqres.in/api/users/${user.id}`, {
+				method: "DELETE",
+			});
+			if (response.status === 204) {
+				alert("Usuario eliminado");
+				const userToDelete = document.querySelector(
+					`[data-userid = "${users.id}"]`
+				);
+				userToDelete.parentElement.remove();
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	});
+
+	div.append(p, editButton, deleteButton);
+
+	userContainer.append(div);
+}
+
 async function getUsers() {
 	try {
 		const response = await fetch("https://reqres.in/api/users");
@@ -12,43 +53,7 @@ async function getUsers() {
 		const users = usersData.data;
 
 		for (let i = 0; i < users.length; i++) {
-			const div = document.createElement("div");
-			const p = document.createElement("p");
-			p.setAttribute("data-userId", users[i].id);
-			p.textContent = users[i].first_name;
-
-			const editButton = document.createElement("button");
-			editButton.textContent = "Editar";
-
-			const deleteButton = document.createElement("button");
-			deleteButton.textContent = "Eliminar";
-
-			editButton.addEventListener("click", function (e) {
-				e.preventDefault();
-				updateForm.classList.toggle("hide");
-				nameInputEditForm.setAttribute("data-id", users[i].id);
-				nameInputEditForm.value = users[i].first_name;
-			});
-
-			deleteButton.addEventListener("click", async function (e) {
-				try {
-					const response = await fetch(
-						`https://reqres.in/api/users/${users[i].id}`,
-						{
-							method: "DELETE",
-						}
-					);
-					if (response.status === 204) {
-						alert("Usuario eliminado");
-					}
-				} catch (error) {
-					console.log(error);
-				}
-			});
-
-			div.append(p, editButton, deleteButton);
-
-			userContainer.append(div);
+			createUserContainer(users[i]);
 		}
 	} catch (error) {
 		console.log(error);
@@ -114,43 +119,14 @@ createForm.addEventListener("submit", async function (e) {
 		if (response.ok) {
 			const userCreated = await response.json();
 
-			const div = document.createElement("div");
-			const p = document.createElement("p");
-			p.setAttribute("data-userId", userCreated.id);
-			p.textContent = userCreated.name;
+			const userToClientFormat = {
+				first_name: userCreated.name,
+				job: userCreated.job,
+				id: userCreated.id,
+			};
 
-			const editButton = document.createElement("button");
-			editButton.textContent = "Editar";
-
-			const deleteButton = document.createElement("button");
-			deleteButton.textContent = "Eliminar";
-
-			editButton.addEventListener("click", function (e) {
-				e.preventDefault();
-				updateForm.classList.toggle("hide");
-				nameInputEditForm.setAttribute("data-id", userCreated.id);
-				nameInputEditForm.value = userCreated.name;
-			});
-
-			deleteButton.addEventListener("click", async function (e) {
-				try {
-					const response = await fetch(
-						`https://reqres.in/api/users/${userCreated.id}`,
-						{
-							method: "DELETE",
-						}
-					);
-					if (response.status === 204) {
-						alert("Usuario eliminado");
-					}
-				} catch (error) {
-					console.log(error);
-				}
-			});
-
-			div.append(p, editButton, deleteButton);
-
-			userContainer.prepend(div);
+			createUserContainer(userToClientFormat);
+			this.reset();
 		}
 	} catch (error) {
 		console.log(error);
