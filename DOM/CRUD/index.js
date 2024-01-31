@@ -65,11 +65,16 @@ updateForm.addEventListener("submit", async function (e) {
 		job: formData.job,
 	};
 	const userId = document.querySelector("[data-id]");
-	const response = await fetch(`https://reqres.in/api/users${userId}`, {
-		method: "PUT",
-		body: JSON.stringify(editedUser),
-		headers: {
-			"Content-type": "application/json",
-		},
-	});
+
+	try {
+		const response = await fetch(`https://reqres.in/api/users${userId}`, {
+			method: "PUT",
+			body: JSON.stringify(editedUser),
+			headers: {
+				"Content-type": "application/json",
+			},
+		});
+	} catch (error) {
+		console.log(error);
+	}
 });
