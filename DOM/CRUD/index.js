@@ -5,7 +5,9 @@ const updateForm = document.querySelector("#updateUserForm");
 async function getUsers() {
 	try {
 		const response = await fetch("https://reqres.in/api/users");
-		const users = await response.json();
+		const usersData = await response.json();
+
+		const users = usersData.data;
 
 		for (let i = 0; i < users.length; i++) {
 			const div = document.createElement("div");
@@ -25,7 +27,7 @@ async function getUsers() {
 				formData.first_name = user[i].first_name;
 			});
 
-			deleteButtonButton.addEventListener("click", function () {});
+			deleteButton.addEventListener("click", function () {});
 
 			div.append(p, editButton, deleteButton);
 
@@ -35,3 +37,5 @@ async function getUsers() {
 		console.log(error);
 	}
 }
+
+getUsers();
