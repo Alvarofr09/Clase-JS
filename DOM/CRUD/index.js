@@ -6,5 +6,17 @@ async function getUsers() {
 	try {
 		const response = await fetch("https://reqres.in/api/users");
 		const users = await response.json();
+
+		for (let i = 0; i < users.length; i++) {
+			const div = document.createElement("div");
+			const p = document.createElement("p");
+			p.textContent = users[i].first_name;
+
+			const editButton = document.createElement("button");
+			editButton.textContent = "Editar";
+
+			const deleteButton = document.createElement("button");
+			deleteButton.textContent = "Eliminar";
+		}
 	} catch (error) {}
 }
