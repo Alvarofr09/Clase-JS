@@ -58,7 +58,18 @@ getUsers();
 
 updateForm.addEventListener("submit", async function (e) {
 	e.preventDefault();
+	const formData = Object.formData(new formData(this));
+
+	const editedUser = {
+		name: formData.first_name,
+		job: formData.job,
+	};
 	const userId = document.querySelector("[data-id]");
-	console.log(userId.dataset.id);
-	// const response = await fetch("https://reqres.in/api/users");
+	const response = await fetch(`https://reqres.in/api/users${userId}`, {
+		method: "PUT",
+		body: JSON.stringify(editedUser),
+		headers: {
+			"Content-type": "application/json",
+		},
+	});
 });
