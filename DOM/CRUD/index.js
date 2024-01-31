@@ -2,7 +2,7 @@ const createForm = document.querySelector("#createUserForm");
 const userContainer = document.querySelector("#userContainer");
 const updateForm = document.querySelector("#updateUserForm");
 
-const nameEditForm = document.querySelector('[data-name = "first_name"]');
+const nameInputEditForm = document.querySelector('[data-name = "first_name"]');
 
 async function getUsers() {
 	try {
@@ -25,7 +25,7 @@ async function getUsers() {
 			editButton.addEventListener("click", function (e) {
 				e.preventDefault();
 				updateForm.classList.toggle("hide");
-				formData.first_name = user[i].first_name;
+				nameInputEditForm.value = users[i].first_name;
 			});
 
 			deleteButton.addEventListener("click", function (e) {});
