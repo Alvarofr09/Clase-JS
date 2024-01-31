@@ -14,6 +14,7 @@ async function getUsers() {
 		for (let i = 0; i < users.length; i++) {
 			const div = document.createElement("div");
 			const p = document.createElement("p");
+			p.setAttribute("data-userId", users[i].id);
 			p.textContent = users[i].first_name;
 
 			const editButton = document.createElement("button");
@@ -67,13 +68,26 @@ updateForm.addEventListener("submit", async function (e) {
 	const userId = document.querySelector("[data-id]");
 
 	try {
-		const response = await fetch(`https://reqres.in/api/users${userId}`, {
-			method: "PUT",
-			body: JSON.stringify(editedUser),
-			headers: {
-				"Content-type": "application/json",
-			},
-		});
+		const response = await fetch(
+			`https://reqres.in/api/users${userId.dataset.id}`,
+			{
+				method: "PUT",
+				body: JSON.stringify(editedUser),
+				headers: {
+					"Content-type": "application/json",
+				},
+			}
+		);
+
+		if (response.ok) {
+			const updateUser = await response.json();
+			const userToUpdate = document.querySelector(
+				`[data-userId = ${userId.dataset.id}]`
+			);
+			userToUpdate.textContent = updateUser.name;
+			this.reset();
+			updateForm.classList.toggle("hide");
+		}
 	} catch (error) {
 		console.log(error);
 	}
