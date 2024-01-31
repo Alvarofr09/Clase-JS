@@ -92,3 +92,67 @@ updateForm.addEventListener("submit", async function (e) {
 		console.log(error);
 	}
 });
+
+createForm.addEventListener("submit", async function (e) {
+	e.preventDefault();
+	const formData = Object.fromEntries(new FormData(this));
+
+	const newUser = {
+		name: formData.name,
+		job: formData.job,
+	};
+
+	try {
+		const response = await fetch("https://reqres.in/api/users", {
+			method: "POST",
+			body: JSON.stringify(newUser),
+			headers: {
+				"Content-type": "application/json",
+			},
+		});
+
+		if (response.ok) {
+			const userCreated = await response.json();
+
+			const div = document.createElement("div");
+			const p = document.createElement("p");
+			p.setAttribute("data-userId", userCreated.id);
+			p.textContent = userCreated.name;
+
+			const editButton = document.createElement("button");
+			editButton.textContent = "Editar";
+
+			const deleteButton = document.createElement("button");
+			deleteButton.textContent = "Eliminar";
+
+			editButton.addEventListener("click", function (e) {
+				e.preventDefault();
+				updateForm.classList.toggle("hide");
+				nameInputEditForm.setAttribute("data-id", userCreated.id);
+				nameInputEditForm.value = userCreated.name;
+			});
+
+			deleteButton.addEventListener("click", async function (e) {
+				try {
+					const response = await fetch(
+						`https://reqres.in/api/users/${userCreated.id}`,
+						{
+							method: "DELETE",
+						}
+					);
+					if (response.status === 204) {
+						alert("Usuario eliminado");
+					}
+				} catch (error) {
+					console.log(error);
+				}
+			});
+
+			div.append(p, editButton, deleteButton);
+
+			userContainer.prepend(div);
+		}
+	} catch (error) {
+		console.log(error);
+	}
+});
