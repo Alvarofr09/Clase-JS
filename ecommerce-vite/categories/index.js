@@ -1,3 +1,4 @@
+import { getData } from "../utils/index.js";
 const urlCategories = "https://api.escuelajs.co/api/v1/categories";
 const template = document.querySelector(".card--template");
 const container = document.querySelector(".container");
