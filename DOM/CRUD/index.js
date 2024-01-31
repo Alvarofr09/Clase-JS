@@ -54,3 +54,5 @@ async function getUsers() {
 }
 
 getUsers();
+
+updateForm.addEventListener("submit", async function () {});
