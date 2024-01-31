@@ -59,7 +59,7 @@ getUsers();
 
 updateForm.addEventListener("submit", async function (e) {
 	e.preventDefault();
-	const formData = Object.formData(new formData(this));
+	const formData = Object.fromEntries(new FormData(this));
 
 	const editedUser = {
 		name: formData.first_name,
@@ -69,7 +69,7 @@ updateForm.addEventListener("submit", async function (e) {
 
 	try {
 		const response = await fetch(
-			`https://reqres.in/api/users${userId.dataset.id}`,
+			`https://reqres.in/api/users/${userId.dataset.id}`,
 			{
 				method: "PUT",
 				body: JSON.stringify(editedUser),
@@ -82,7 +82,7 @@ updateForm.addEventListener("submit", async function (e) {
 		if (response.ok) {
 			const updateUser = await response.json();
 			const userToUpdate = document.querySelector(
-				`[data-userId = ${userId.dataset.id}]`
+				`[data-userid = "${userId.dataset.id}"]`
 			);
 			userToUpdate.textContent = updateUser.name;
 			this.reset();
