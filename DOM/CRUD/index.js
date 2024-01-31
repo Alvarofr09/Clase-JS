@@ -18,7 +18,11 @@ async function getUsers() {
 			const deleteButton = document.createElement("button");
 			deleteButton.textContent = "Eliminar";
 
-			editButton.addEventListener("click", function () {});
+			const formData = Object.fromEntries(new FormData(updateForm));
+
+			editButton.addEventListener("click", function () {
+				updateForm.classList.toggle("hide");
+			});
 
 			deleteButtonButton.addEventListener("click", function () {});
 		}
