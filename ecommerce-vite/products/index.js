@@ -1,13 +1,8 @@
+import { getData } from "../utils/index.js";
 const container = document.querySelector(".container");
 const template = document.querySelector(".card--template");
 const urlProducts = "https://api.escuelajs.co/api/v1/products?offset=0&limit=";
 const limit = 10;
-
-async function getData(url) {
-	const response = await fetch(url);
-	const data = await response.json();
-	return data;
-}
 
 async function showData(limit) {
 	try {
