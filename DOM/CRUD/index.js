@@ -31,5 +31,7 @@ async function getUsers() {
 
 			userContainer.append(div);
 		}
-	} catch (error) {}
+	} catch (error) {
+		console.log(error);
+	}
 }
