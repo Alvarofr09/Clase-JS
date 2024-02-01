@@ -76,6 +76,7 @@ async function handleRegisterSubmit(e) {
 
 			const messageError = document.querySelector(".error");
 			if (messageError) messageError.remove();
+			alert("Te has registrado a la perfeccion");
 		} else {
 			const messageError = document.querySelector(".error");
 			if (!messageError) {
