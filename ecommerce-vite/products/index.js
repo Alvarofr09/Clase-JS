@@ -1,12 +1,19 @@
-import { getData } from "../utils/index.js";
+import { getData, showListCategories, showProfile } from "../utils/index.js";
 const container = document.querySelector(".container");
 const template = document.querySelector(".card--template");
 const urlProducts = "https://api.escuelajs.co/api/v1/products?offset=0&limit=";
+const url = new URL(document.location.href);
+const categoryId = url.searchParams.get("categoryId");
 const limit = 10;
+const lista = document.querySelector(".lista-categorias");
 
-async function showData(limit) {
+console.log(categoryId);
+
+async function showData(limit, category) {
 	try {
-		const products = await getData(urlProducts + limit);
+		const products = await getData(
+			urlProducts + limit + "&categoryId=" + category
+		);
 
 		for (let i = 0; i < products.length; i++) {
 			const product = products[i];
@@ -21,16 +28,16 @@ async function showData(limit) {
 
 			// Acortar el título a 10 palabras máximo
 			const titleWords = product.title.split(" ");
-			const shortenedTitle = titleWords.slice(0, 2).join(" ");
+			const shortenedTitle = titleWords.slice(0, 1).join(" ");
 			name.textContent = shortenedTitle + (titleWords.length > 2 ? "..." : "");
 
 			price.textContent = product.price + "€";
 
 			// Acortar la descripción a 10 palabras máximo
 			const descriptionWords = product.description.split(" ");
-			const shortenedDescription = descriptionWords.slice(0, 10).join(" ");
+			const shortenedDescription = descriptionWords.slice(0, 8).join(" ");
 			description.textContent =
-				shortenedDescription + (descriptionWords.length > 10 ? "..." : "");
+				shortenedDescription + (descriptionWords.length > 8 ? "..." : "");
 
 			container.appendChild(templateCard);
 		}
@@ -39,4 +46,6 @@ async function showData(limit) {
 	}
 }
 
-showData(limit);
+showData();
+showListCategories(lista);
+showData(limit, categoryId);
