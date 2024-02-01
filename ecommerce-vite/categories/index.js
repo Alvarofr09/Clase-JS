@@ -30,6 +30,6 @@ async function showData() {
 	}
 }
 
-showData();
+showProfile();
 showListCategories(lista);
 showData();

@@ -46,6 +46,6 @@ async function showData(limit, category) {
 	}
 }
 
-showData();
+showProfile();
 showListCategories(lista);
 showData(limit, categoryId);
