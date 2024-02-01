@@ -10,12 +10,13 @@ h1 {
 }
 
 .container {
-	max-width: 1200px;
+	max-width: 1800px;
 	margin: 10px;
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
 	gap: 3em;
+	justify-content: center;
 }
 
 a {
