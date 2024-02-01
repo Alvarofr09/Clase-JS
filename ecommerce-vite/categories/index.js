@@ -14,6 +14,7 @@ async function showData() {
 
 		const imagen = templateCard.querySelector(".card-image");
 		const cardTitle = templateCard.querySelector(".card-title");
+		const link = templateCard.querySelector(".card-link");
 		// const editButton = templateCard.querySelector(".card-edit");
 		// const deleteButton = templateCard.querySelector(".card-delete");
 
@@ -21,12 +22,12 @@ async function showData() {
 
 		// deleteButton.addEventListener("click", handleDelete);
 
+		console.log(category);
 		imagen.src = category.image;
 		cardTitle.textContent = category.name;
+		link.href = `../products/index.html?categoryId=${category.id}`;
 
 		container.append(templateCard);
-
-		console.log(category);
 	}
 }
 
