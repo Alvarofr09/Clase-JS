@@ -1,13 +1,8 @@
 import { getData } from "../utils/index.js";
+import Swal from "sweetalert2";
 const urlCategories = "https://api.escuelajs.co/api/v1/categories";
 const template = document.querySelector(".card--template");
 const container = document.querySelector(".container");
-
-async function getData(url) {
-	const response = await fetch(url);
-	const data = await response.json();
-	return data;
-}
 
 async function showData() {
 	const categories = await getData(urlCategories);
@@ -19,12 +14,12 @@ async function showData() {
 
 		const imagen = templateCard.querySelector(".card-image");
 		const cardTitle = templateCard.querySelector(".card-title");
-		const editButton = templateCard.querySelector(".card-edit");
-		const deleteButton = templateCard.querySelector(".card-delete");
+		// const editButton = templateCard.querySelector(".card-edit");
+		// const deleteButton = templateCard.querySelector(".card-delete");
 
-		editButton.addEventListener("click", handleEdit);
+		// editButton.addEventListener("click", handleEdit);
 
-		deleteButton.addEventListener("click", handleDelete);
+		// deleteButton.addEventListener("click", handleDelete);
 
 		imagen.src = category.image;
 		cardTitle.textContent = category.name;
@@ -35,14 +30,48 @@ async function showData() {
 	}
 }
 
-function handleEdit(e) {
-	e.preventDefault();
-	alert("Vas a editar");
-}
+// function handleEdit(e) {
+// 	e.preventDefault();
+// 	alert("Vas a editar");
+// }
 
-function handleDelete(e) {
-	e.preventDefault();
-	alert("Vas a borrar");
-}
+// function handleDelete(e) {
+// 	e.preventDefault();
+// 	const swalWithBootstrapButtons = Swal.mixin({
+// 		customClass: {
+// 			confirmButton: "btn btn-success",
+// 			cancelButton: "btn btn-danger",
+// 		},
+// 		buttonsStyling: false,
+// 	});
+// 	swalWithBootstrapButtons
+// 		.fire({
+// 			title: "¿Quieres borrar la categoria?",
+// 			text: "You won't be able to revert this!",
+// 			icon: "warning",
+// 			showCancelButton: true,
+// 			confirmButtonText: "Yes, delete it!",
+// 			cancelButtonText: "No, cancel!",
+// 			reverseButtons: true,
+// 		})
+// 		.then((result) => {
+// 			if (result.isConfirmed) {
+// 				swalWithBootstrapButtons.fire({
+// 					title: "Borrada!",
+// 					text: "Has borrado la categoria: .",
+// 					icon: "success",
+// 				});
+// 			} else if (
+// 				/* Read more about handling dismissals below */
+// 				result.dismiss === Swal.DismissReason.cancel
+// 			) {
+// 				swalWithBootstrapButtons.fire({
+// 					title: "Cancelado",
+// 					text: "No has borrado la categoria",
+// 					icon: "error",
+// 				});
+// 			}
+// 		});
+// }
 
 showData();
