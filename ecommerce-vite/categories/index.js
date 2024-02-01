@@ -1,8 +1,8 @@
-import { getData } from "../utils/index.js";
-import Swal from "sweetalert2";
+import { getData, showListCategories, showProfile } from "../utils/index.js";
 const urlCategories = "https://api.escuelajs.co/api/v1/categories";
 const template = document.querySelector(".card--template");
 const container = document.querySelector(".container");
+const lista = document.querySelector(".lista-categorias");
 
 async function showData() {
 	const categories = await getData(urlCategories);
@@ -22,7 +22,6 @@ async function showData() {
 
 		// deleteButton.addEventListener("click", handleDelete);
 
-		console.log(category);
 		imagen.src = category.image;
 		cardTitle.textContent = category.name;
 		link.href = `../products/index.html?categoryId=${category.id}`;
@@ -31,48 +30,6 @@ async function showData() {
 	}
 }
 
-// function handleEdit(e) {
-// 	e.preventDefault();
-// 	alert("Vas a editar");
-// }
-
-// function handleDelete(e) {
-// 	e.preventDefault();
-// 	const swalWithBootstrapButtons = Swal.mixin({
-// 		customClass: {
-// 			confirmButton: "btn btn-success",
-// 			cancelButton: "btn btn-danger",
-// 		},
-// 		buttonsStyling: false,
-// 	});
-// 	swalWithBootstrapButtons
-// 		.fire({
-// 			title: "¿Quieres borrar la categoria?",
-// 			text: "You won't be able to revert this!",
-// 			icon: "warning",
-// 			showCancelButton: true,
-// 			confirmButtonText: "Yes, delete it!",
-// 			cancelButtonText: "No, cancel!",
-// 			reverseButtons: true,
-// 		})
-// 		.then((result) => {
-// 			if (result.isConfirmed) {
-// 				swalWithBootstrapButtons.fire({
-// 					title: "Borrada!",
-// 					text: "Has borrado la categoria: .",
-// 					icon: "success",
-// 				});
-// 			} else if (
-// 				/* Read more about handling dismissals below */
-// 				result.dismiss === Swal.DismissReason.cancel
-// 			) {
-// 				swalWithBootstrapButtons.fire({
-// 					title: "Cancelado",
-// 					text: "No has borrado la categoria",
-// 					icon: "error",
-// 				});
-// 			}
-// 		});
-// }
-
+showData();
+showListCategories(lista);
 showData();
