@@ -2,6 +2,7 @@ const addMemberForm = document.querySelector("#personNameForm");
 const taskForm = document.querySelector("#taskForm");
 
 addMemberForm.addEventListener("submit", handleSubmit);
+taskForm.addEventListener("submit", addTaskToList);
 
 const familyMember = [];
 const taskPoints = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -15,6 +16,13 @@ function handleSubmit(e) {
 	const formData = Object.fromEntries(new FormData(this));
 	addMemberToList(formData.name);
 	showTaskForm();
+}
+
+function addTaskToList(e) {
+	e.preventDefault();
+	const formData = Object.fromEntries(new FormData(this));
+	const taskTitle = document.createElement("h3");
+	taskTitle.textContent = "Tareas por hacer";
 }
 
 function showTaskForm() {
