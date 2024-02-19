@@ -16,3 +16,11 @@
 
 1.  Creamos archivo en src llamado connectionMysql.js
 2.  Importamos import { createPool } from 'mysql2';
+3.  Luego exportamos la constante pool que es los datos de la conexion a la base de datos:
+    export const pool = createPool({
+    host: "localhost",
+    port: 5432,
+    database: "imdb",
+    user: "postgres",
+    password: 1234,
+    });
