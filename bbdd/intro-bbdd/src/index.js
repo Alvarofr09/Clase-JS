@@ -1,8 +1,9 @@
+// import { pool } from "./conectionMysql.js";
 import { pool } from "./conectionMysql.js";
 
-function getPersonajes() {
+async function getPersonajes() {
 	try {
-		const result = pool.query("SELECT * FROM users");
+		const result = await pool.query("SELECT * FROM personajes");
 		console.log(result);
 	} catch (error) {
 		console.log(error);
