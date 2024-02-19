@@ -1,1 +1,1 @@
-console.log("hola");
+import { pool } from "./conectionMysql.js";
