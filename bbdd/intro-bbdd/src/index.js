@@ -4,7 +4,7 @@ import { pool } from "./conectionMysql.js";
 async function getPersonajes() {
 	try {
 		const result = await pool.query("SELECT * FROM personajes");
-		console.log(result);
+		console.log(result.rows[0]);
 	} catch (error) {
 		console.log(error);
 	}
