@@ -1,9 +1,10 @@
-import { createPool } from "mysql2";
+import { createPool } from "mysql2/promise";
+import Pool from "pg-pool";
 
-export const pool = createPool({
-	host: "localhost",
-	port: 5432,
-	database: "imdb",
+export const pool = new Pool({
 	user: "postgres",
-	password: 1234,
+	host: "localhost",
+	database: "imdb",
+	password: "1234",
+	port: 5432,
 });
