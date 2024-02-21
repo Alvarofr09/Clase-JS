@@ -80,7 +80,7 @@
 4. Ponerle un puerto para que lo utilize: const PORT = ----;
 5. Iniciar el servidor: app.listen(PORT, () => console.log(`Servidor escuchando en el puerto ${PORT}`));
 
-## Crear endpoint
+## Crear endpoint de get
 
 1. Aqui se crea el endpoint '/personajes', para que cuando llames a la ruta del servidor + '/personajes' haga esta llamada
    app.get("/personajes", async (req, res) => {
@@ -92,3 +92,32 @@
    res.status(500).json({ error: "Error interno del servidor" });
    }
    });
+
+## Crear endpoint de post
+
+1.  Habria que cambiar la funcion de añadir personajes:
+    async function addPersonajes({nombre,autor,year,capitulos,ages_on_air,chap_per_year,}) {
+    try {
+    await pool.query(
+    "INSERT INTO personajes (nombre, autor, year, capitulos, ages_on_air, chap_per_year) " +
+    "VALUES ($1, $2, $3, $4, $5, $6)",
+    [nombre, autor, year, capitulos, ages_on_air, chap_per_year]
+    );
+
+            return "Personaje añadido";
+        } catch (error) {
+            console.log(error);
+        }
+
+    }
+
+2.  Y ahora hacer el endpoint de post
+    app.post("/add-personajes", async (req, res) => {
+    try {
+    const result = await addPersonajes(req.body);
+    res.send(result);
+    } catch (error) {
+    console.error("Error al realizar la consulta", error);
+    res.status(500).json({ error: "Error interno del servidor" });
+    }
+    });
