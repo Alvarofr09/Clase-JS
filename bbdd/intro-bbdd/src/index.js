@@ -12,16 +12,22 @@ async function getPersonajes() {
 
 // getPersonajes();
 
-async function addPersonajes() {
+async function addPersonajes({
+	nombre,
+	autor,
+	year,
+	capitulos,
+	ages_on_air,
+	chap_per_year,
+}) {
 	try {
-		const result = await pool.query(
-			"INSERT INTO personajes (nombre, autor, year, capitulos, ages_on_air, chaps_per_year) " +
+		await pool.query(
+			"INSERT INTO personajes (nombre, autor, year, capitulos, ages_on_air, chap_per_year) " +
 				"VALUES ($1, $2, $3, $4, $5, $6)",
-			["Naruto Uzumaki", "Masashi Kishimoto", 1999, 700, 25, 28]
+			[nombre, autor, year, capitulos, ages_on_air, chap_per_year]
 		);
 
-		console.log(result);
-		console.log("Personaje añadido");
+		return "Personaje añadido";
 	} catch (error) {
 		console.log(error);
 	}
@@ -35,9 +41,20 @@ app.use(express.json());
 
 const PORT = 3000;
 
+// End point de GET
 app.get("/personajes", async (req, res) => {
 	try {
 		const result = await getPersonajes();
+		res.send(result);
+	} catch (error) {
+		console.error("Error al realizar la consulta", error);
+		res.status(500).json({ error: "Error interno del servidor" });
+	}
+});
+
+app.post("/add-personajes", async (req, res) => {
+	try {
+		const result = await addPersonajes(req.body);
 		res.send(result);
 	} catch (error) {
 		console.error("Error al realizar la consulta", error);
