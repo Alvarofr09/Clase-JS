@@ -57,3 +57,38 @@
     }
 
     getPersonajes();
+
+## Para meter un dato en la base de datos
+
+1. Crear una función async con try/catch
+2. Luego usar el pool.query como antes solo que con el insert:
+   const result = await pool.query(
+   "INSERT INTO personajes (nombre, autor, year, capitulos, ages_on_air, chaps_per_year) " +
+   "VALUES ($1, $2, $3, $4, $5, $6)",
+   ["Naruto Uzumaki", "Masashi Kishimoto", 1999, 700, 25, 28]
+   );
+   en el values se pone $ y el numero como haya de numero de datos, y luego los datos se ponen abajo como un array
+
+## Crear nuestra api rest
+
+1. instalar express: npm i express;
+2. importar express en el js donde lo vayas a usar: import express from "express";
+3. Luego usar el express usando:
+   const app = express();
+   app.use(express.json());
+
+4. Ponerle un puerto para que lo utilize: const PORT = ----;
+5. Iniciar el servidor: app.listen(PORT, () => console.log(`Servidor escuchando en el puerto ${PORT}`));
+
+## Crear endpoint
+
+1. Aqui se crea el endpoint '/personajes', para que cuando llames a la ruta del servidor + '/personajes' haga esta llamada
+   app.get("/personajes", async (req, res) => {
+   try {
+   const result = await getPersonajes();
+   res.send(result);
+   } catch (error) {
+   console.error("Error al realizar la consulta", error);
+   res.status(500).json({ error: "Error interno del servidor" });
+   }
+   });
