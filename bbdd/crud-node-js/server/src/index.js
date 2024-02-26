@@ -2,6 +2,7 @@ import express from "express";
 import {
 	getEstudiantes,
 	getEstudianteByid,
+	addEstudiante,
 } from "./api/estudiantes/estudiantes.js";
 
 // Crear la constante que llama a express
@@ -32,6 +33,8 @@ app.get("/students/:id", async (req, res) => {
 		errorApi(res, error);
 	}
 });
+
+// Endpoint de meter un estudiante
 
 // Iniciar el servidor
 app.listen(PORT, () => console.log(`Servidor escuchando en el puerto ${PORT}`));
