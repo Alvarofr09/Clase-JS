@@ -18,6 +18,18 @@ async function getEstudianteByid(id) {
 	}
 }
 
+async function addEstudiante({ name, lastname, gender, age }) {
+	try {
+		const result = await pool.query(
+			"INSERT INTO students " + "VALUES (?, ?, ?, ?)",
+			[name, lastname, gender, age]
+		);
+		result;
+	} catch (error) {
+		console.log(error);
+	}
+}
+
 export {
 	getEstudiantes,
 	getEstudianteByid,
