@@ -33,7 +33,7 @@ async function addEstudiante({ name, lastname, gender, age }) {
 export {
 	getEstudiantes,
 	getEstudianteByid,
-	// addPersonajes,
+	addEstudiante,
 	// updatePersonaje,
 	// deletePersonaje,
 };
