@@ -9,6 +9,15 @@ async function getEstudiantes() {
 	}
 }
 
+async function getEstudianteByid(id) {
+	try {
+		const result = await pool.query(`SELECT * FROM students where id = ${id}`);
+		return result[0];
+	} catch (error) {
+		console.log(error);
+	}
+}
+
 export {
 	getEstudiantes,
 	getEstudianteByid,
