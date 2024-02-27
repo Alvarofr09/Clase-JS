@@ -30,10 +30,18 @@ async function addEstudiante({ name, lastname, gender, age }) {
 	}
 }
 
+async function updateEstudiante({ name, lastname, gender, age }, id) {
+	try {
+		const result = await pool.query("Update ");
+	} catch (error) {
+		console.log(error);
+	}
+}
+
 export {
 	getEstudiantes,
 	getEstudianteByid,
 	addEstudiante,
-	// updatePersonaje,
+	updateEstudiante,
 	// deletePersonaje,
 };
