@@ -57,5 +57,5 @@ export {
 	getEstudianteByid,
 	addEstudiante,
 	updateEstudiante,
-	// deletePersonaje,
+	deleteEstudiante,
 };
