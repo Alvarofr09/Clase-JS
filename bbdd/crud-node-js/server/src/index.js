@@ -3,6 +3,7 @@ import {
 	getEstudiantes,
 	getEstudianteByid,
 	addEstudiante,
+	updateEstudiante,
 } from "./api/estudiantes/estudiantes.js";
 
 // Crear la constante que llama a express
@@ -38,6 +39,16 @@ app.get("/students/:id", async (req, res) => {
 app.post("/add-students", async (req, res) => {
 	try {
 		const result = await addEstudiante(req.body);
+		res.send(result);
+	} catch (error) {
+		errorApi(res, error);
+	}
+});
+
+// Endpoint de actualizar un estudiante
+app.put("/update-students/:id", async (req, res) => {
+	try {
+		const result = await updateEstudiante(req.body, req.params.id);
 		res.send(result);
 	} catch (error) {
 		errorApi(res, error);
