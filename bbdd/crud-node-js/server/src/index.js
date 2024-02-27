@@ -35,6 +35,14 @@ app.get("/students/:id", async (req, res) => {
 });
 
 // Endpoint de meter un estudiante
+app.post("/add-students", async (req, res) => {
+	try {
+		const result = await addEstudiante(req.body);
+		res.send(result);
+	} catch (error) {
+		errorApi(res, error);
+	}
+});
 
 // Iniciar el servidor
 app.listen(PORT, () => console.log(`Servidor escuchando en el puerto ${PORT}`));
