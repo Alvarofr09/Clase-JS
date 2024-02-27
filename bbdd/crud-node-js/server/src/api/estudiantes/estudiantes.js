@@ -21,10 +21,11 @@ async function getEstudianteByid(id) {
 async function addEstudiante({ name, lastname, gender, age }) {
 	try {
 		const result = await pool.query(
-			"INSERT INTO students " + "VALUES (?, ?, ?, ?)",
+			"INSERT INTO students (name, lastname, gender, age) " +
+				"VALUES (?, ?, ?, ?)",
 			[name, lastname, gender, age]
 		);
-		result;
+		return result[0];
 	} catch (error) {
 		console.log(error);
 	}
@@ -32,7 +33,12 @@ async function addEstudiante({ name, lastname, gender, age }) {
 
 async function updateEstudiante({ name, lastname, gender, age }, id) {
 	try {
-		const result = await pool.query("Update ");
+		const result = await pool.query(
+			"UPDATE students SET name = ?, lastname = ?, gender = ?, age = ? " +
+				`WHERE id = ${id}`,
+			[name, lastname, gender, age]
+		);
+		return result[0];
 	} catch (error) {
 		console.log(error);
 	}
