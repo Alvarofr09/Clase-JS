@@ -4,6 +4,7 @@ import {
 	getEstudianteByid,
 	addEstudiante,
 	updateEstudiante,
+	deleteEstudiante,
 } from "./api/estudiantes/estudiantes.js";
 
 // Crear la constante que llama a express
