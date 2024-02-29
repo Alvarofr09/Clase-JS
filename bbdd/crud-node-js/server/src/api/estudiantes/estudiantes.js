@@ -47,6 +47,7 @@ async function updateEstudiante({ name, lastname, gender, age }, id) {
 async function deleteEstudiante(id) {
 	try {
 		const result = await pool.query(`DELETE FROM students WHERE id = ${id}`);
+		return result[0];
 	} catch (error) {
 		console.log(error);
 	}
