@@ -56,6 +56,16 @@ app.put("/update-students/:id", async (req, res) => {
 	}
 });
 
+//Endpoint de borrar un estudiante
+app.delete("/delete-students/:id", async (req, res) => {
+	try {
+		const result = await deleteEstudiante(req.params.id);
+		res.send(result);
+	} catch (error) {
+		errorApi(res, error);
+	}
+});
+
 // Iniciar el servidor
 app.listen(PORT, () => console.log(`Servidor escuchando en el puerto ${PORT}`));
 
