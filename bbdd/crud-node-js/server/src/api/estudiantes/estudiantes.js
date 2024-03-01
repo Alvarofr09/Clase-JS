@@ -25,7 +25,7 @@ async function addEstudiante({ name, lastname, gender, age }) {
 				"VALUES (?, ?, ?, ?)",
 			[name, lastname, gender, age]
 		);
-		return result[0];
+		return "Estudiante agregado correctamente";
 	} catch (error) {
 		console.log(error);
 	}
@@ -38,7 +38,7 @@ async function updateEstudiante({ name, lastname, gender, age }, id) {
 				`WHERE id = ${id}`,
 			[name, lastname, gender, age]
 		);
-		return result[0];
+		return "Estudiante actualizado correctamente";
 	} catch (error) {
 		console.log(error);
 	}
@@ -47,7 +47,7 @@ async function updateEstudiante({ name, lastname, gender, age }, id) {
 async function deleteEstudiante(id) {
 	try {
 		const result = await pool.query(`DELETE FROM students WHERE id = ${id}`);
-		return result[0];
+		return "Estudiante eliminado correctamente";
 	} catch (error) {
 		console.log(error);
 	}
