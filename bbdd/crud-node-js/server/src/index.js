@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import {
 	getEstudiantes,
 	getEstudianteByid,
@@ -9,6 +10,9 @@ import {
 
 // Crear la constante que llama a express
 const app = express();
+
+// Middleware de CORS
+app.use(cors());
 
 // Funcion que usa express
 app.use(express.json());
