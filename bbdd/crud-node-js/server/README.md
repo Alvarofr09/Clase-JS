@@ -16,3 +16,7 @@
    \_Crear un estudiante
    \_Actualizar un estudiante
    \_Borrar un estudiante
+
+## Habilitar las cors
+
+// TODO: Habilitar las cors
