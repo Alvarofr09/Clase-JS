@@ -1,4 +1,4 @@
-import { pool } from "../../conectionMysql.js";
+import { pool } from "../../connectionMysql.js";
 
 async function getEstudiantes() {
 	try {
