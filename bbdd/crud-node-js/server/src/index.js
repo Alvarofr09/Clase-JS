@@ -21,7 +21,7 @@ app.use(express.json());
 const PORT = 8000;
 
 // Endpoint de todos los estudiantes
-app.get("/students", async (req, res) => {
+app.get("/students/", async (req, res) => {
 	try {
 		const result = await getEstudiantes();
 		res.send(result);
