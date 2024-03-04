@@ -1,9 +1,9 @@
+import { updateStudent, deleteStudent } from "./estudiantes_api.js";
+
 let datos = document.querySelector(".datos");
 let datosStudents = document.querySelector(".students");
-const URL = "http://localhost:8000/";
 
-const editStudents = URL + "update-students/";
-const deleteStudents = URL + "delete-students/";
+export const URL = "http://localhost:8000/";
 
 async function getData(url) {
 	const response = await fetch(url);
@@ -13,9 +13,7 @@ async function getData(url) {
 	return data;
 }
 
-getData(URL + "students");
-
-async function showStudentsInTable(tabla) {
+async function showStudentsInTableA(tabla) {
 	const students = await getData(URL + "students");
 
 	for (let i = 0; i < students.length; i++) {
@@ -48,7 +46,7 @@ async function showStudentsInTable(tabla) {
 	}
 }
 
-async function showStudentsInTableC(cabecera, tabla) {
+async function showStudentsInTable(cabecera, tabla) {
 	const students = await getData(URL + "students");
 
 	// Obtener las claves (nombres de las columnas) del primer estudiante
@@ -64,7 +62,17 @@ async function showStudentsInTableC(cabecera, tabla) {
 	// Iterar sobre los estudiantes y agregarlos a la tabla
 	students.forEach((student) => {
 		const tr = document.createElement("tr");
-		columnNames.forEach((columnName) => {
+
+		// Crear y agregar el primer campo (ID) como un th
+		const thId = document.createElement("th");
+		thId.textContent = student.ID;
+		tr.appendChild(thId);
+
+		// Guardar el ID como un atributo de dataset en el elemento tr
+		tr.dataset.id = student.ID;
+
+		// Agregar celdas de datos para las otras columnas
+		columnNames.slice(1).forEach((columnName) => {
 			const td = document.createElement("td");
 			td.textContent = student[columnName];
 			tr.appendChild(td);
@@ -75,6 +83,9 @@ async function showStudentsInTableC(cabecera, tabla) {
 		const editButton = document.createElement("button");
 		editButton.textContent = "Editar";
 		editButton.classList.add("btn", "btn-success");
+		editButton.addEventListener("click", (e) => {
+			updateStudent(e.target.parentElement.parentElement.dataset.id);
+		});
 		tdEdit.appendChild(editButton);
 		tr.appendChild(tdEdit);
 
@@ -82,6 +93,9 @@ async function showStudentsInTableC(cabecera, tabla) {
 		const deleteButton = document.createElement("button");
 		deleteButton.textContent = "Borrar";
 		deleteButton.classList.add("btn", "btn-danger");
+		deleteButton.addEventListener("click", (e) => {
+			deleteStudent(e.target.parentElement.parentElement.dataset.id);
+		});
 		tdDelete.appendChild(deleteButton);
 		tr.appendChild(tdDelete);
 
@@ -90,4 +104,6 @@ async function showStudentsInTableC(cabecera, tabla) {
 	});
 }
 
-showStudentsInTableC(datos, datosStudents);
+showStudentsInTable(datos, datosStudents);
+
+// export { getData, showStudentsInTable };
