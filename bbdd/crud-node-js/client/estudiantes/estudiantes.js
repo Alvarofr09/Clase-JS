@@ -1,9 +1,21 @@
-import { updateStudent, deleteStudent } from "./estudiantes_api.js";
+import {
+	createStudent,
+	updateStudent,
+	deleteStudent,
+} from "./estudiantes_api.js";
 
 let datos = document.querySelector(".datos");
 let datosStudents = document.querySelector(".students");
+let formAddStudent = document.querySelector("#AddStudent");
 
 export const URL = "http://localhost:8000/";
+
+formAddStudent.addEventListener("submit", (e) => {
+	e.preventDefault();
+
+	const formData = Object.fromEntries(new FormData(e.currentTarget));
+	createStudent(formData);
+});
 
 async function getData(url) {
 	const response = await fetch(url);
@@ -11,39 +23,6 @@ async function getData(url) {
 
 	console.log(data);
 	return data;
-}
-
-async function showStudentsInTableA(tabla) {
-	const students = await getData(URL + "students");
-
-	for (let i = 0; i < students.length; i++) {
-		const student = students[i];
-
-		// Crear una nueva fila (tr)
-		const tr = document.createElement("tr");
-
-		// Crear y agregar celdas para cada dato
-		const thId = document.createElement("th");
-		thId.textContent = student.ID;
-
-		const tdName = document.createElement("td");
-		tdName.textContent = student.NAME;
-
-		const tdLastName = document.createElement("td");
-		tdLastName.textContent = student.LAST_NAME;
-
-		const tdAge = document.createElement("td");
-		tdAge.textContent = student.AGE;
-
-		const tdGender = document.createElement("td");
-		tdGender.textContent = student.GENDER;
-
-		// Agregar las celdas a la nueva fila
-		tr.append(thId, tdName, tdLastName, tdAge, tdGender);
-
-		// Agregar la nueva fila a la tabla
-		tabla.appendChild(tr);
-	}
 }
 
 async function showStudentsInTable(cabecera, tabla) {
@@ -56,8 +35,18 @@ async function showStudentsInTable(cabecera, tabla) {
 	columnNames.forEach((columnName) => {
 		const th = document.createElement("th");
 		th.textContent = columnName;
-		cabecera.prepend(th);
+		cabecera.append(th);
 	});
+
+	const thEdit = document.createElement("th");
+	thEdit.textContent = "Editar";
+
+	cabecera.append(thEdit);
+
+	const thDel = document.createElement("th");
+
+	thDel.textContent = "Borrar";
+	cabecera.append(thDel);
 
 	// Iterar sobre los estudiantes y agregarlos a la tabla
 	students.forEach((student) => {
@@ -65,11 +54,11 @@ async function showStudentsInTable(cabecera, tabla) {
 
 		// Crear y agregar el primer campo (ID) como un th
 		const thId = document.createElement("th");
-		thId.textContent = student.ID;
+		thId.textContent = student.id;
 		tr.appendChild(thId);
 
 		// Guardar el ID como un atributo de dataset en el elemento tr
-		tr.dataset.id = student.ID;
+		tr.dataset.id = student.id;
 
 		// Agregar celdas de datos para las otras columnas
 		columnNames.slice(1).forEach((columnName) => {
@@ -85,6 +74,7 @@ async function showStudentsInTable(cabecera, tabla) {
 		editButton.classList.add("btn", "btn-success");
 		editButton.addEventListener("click", (e) => {
 			updateStudent(e.target.parentElement.parentElement.dataset.id);
+			sho;
 		});
 		tdEdit.appendChild(editButton);
 		tr.appendChild(tdEdit);
