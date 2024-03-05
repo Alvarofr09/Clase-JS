@@ -72,9 +72,10 @@ async function showStudentsInTable(cabecera, tabla) {
 		const editButton = document.createElement("button");
 		editButton.textContent = "Editar";
 		editButton.classList.add("btn", "btn-success");
+		editButton.setAttribute("data-bs-toggle", "modal");
+		editButton.setAttribute("data-bs-target", "#Update");
 		editButton.addEventListener("click", (e) => {
 			updateStudent(e.target.parentElement.parentElement.dataset.id);
-			sho;
 		});
 		tdEdit.appendChild(editButton);
 		tr.appendChild(tdEdit);
