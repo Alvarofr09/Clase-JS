@@ -40,19 +40,19 @@
 
 					<div class="modal-body">
 						<form id="AddStudent" class="d-flex flex-column align-items-center">
-							<label for="name">Nombre</label>
+							<label for="nameAdd">Nombre</label>
 							<input
 								class="form-control w-50 m-2"
 								type="text"
 								name="name"
-								id="name"
+								id="nameAdd"
 							/>
-							<label for="lastname">Apellidos</label>
+							<label for="lastnameAdd">Apellidos</label>
 							<input
 								class="form-control w-50 m-2"
 								type="text"
 								name="lastname"
-								id="lastname"
+								id="lastnameAdd"
 							/>
 							<label for="gender">Género</label>
 							<select
@@ -63,12 +63,12 @@
 								<option value="Masculino">Masculino</option>
 								<option value="Femenino">Femenino</option>
 							</select>
-							<label for="age">Edad</label>
+							<label for="ageAdd">Edad</label>
 							<input
 								class="form-control w-50 m-2"
 								type="number"
 								name="age"
-								id="age"
+								id="ageAdd"
 							/>
 
 							<button type="submit" class="btn btn-primary m-5 AddStudent">
@@ -89,20 +89,21 @@
 					</div>
 
 					<div class="modal-body">
-						<form id="AddStudent" class="d-flex flex-column align-items-center">
-							<label for="name">Nombre</label>
+						<form id="UpdateForm" class="d-flex flex-column align-items-center">
+							<input type="number" name="id" id="idUpdate" hidden />
+							<label for="nameUpdate">Nombre</label>
 							<input
 								class="form-control w-50 m-2"
 								type="text"
 								name="name"
-								id="name"
+								id="nameUpdate"
 							/>
-							<label for="lastname">Apellidos</label>
+							<label for="lastnameUpdate">Apellidos</label>
 							<input
 								class="form-control w-50 m-2"
 								type="text"
 								name="lastname"
-								id="lastname"
+								id="lastnameUpdate"
 							/>
 							<label for="gender">Género</label>
 							<select
@@ -113,12 +114,12 @@
 								<option value="Masculino">Masculino</option>
 								<option value="Femenino">Femenino</option>
 							</select>
-							<label for="age">Edad</label>
+							<label for="ageUpdate">Edad</label>
 							<input
 								class="form-control w-50 m-2"
 								type="number"
 								name="age"
-								id="age"
+								id="ageUpdate"
 							/>
 
 							<button type="submit" class="btn btn-primary m-5 AddStudent">
