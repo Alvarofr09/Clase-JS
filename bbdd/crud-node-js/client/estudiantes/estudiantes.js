@@ -1,4 +1,5 @@
 import {
+	showDataStudent,
 	createStudent,
 	updateStudent,
 	deleteStudent,
@@ -6,7 +7,9 @@ import {
 
 let datos = document.querySelector(".datos");
 let datosStudents = document.querySelector(".students");
+
 let formAddStudent = document.querySelector("#AddStudent");
+let formUpdateStudent = document.querySelector("#UpdateForm");
 
 export const URL = "http://localhost:8000/";
 
@@ -15,6 +18,20 @@ formAddStudent.addEventListener("submit", (e) => {
 
 	const formData = Object.fromEntries(new FormData(e.currentTarget));
 	createStudent(formData);
+});
+
+formUpdateStudent.addEventListener("submit", async function (e) {
+	e.preventDefault();
+	const formData = Object.fromEntries(new FormData(this));
+
+	const editedStudent = {
+		name: formData.name,
+		lastname: formData.lastname,
+		gender: formData.gender,
+		age: formData.age,
+	};
+
+	updateStudent(editedStudent, formData.id);
 });
 
 async function getData(url) {
@@ -75,7 +92,7 @@ async function showStudentsInTable(cabecera, tabla) {
 		editButton.setAttribute("data-bs-toggle", "modal");
 		editButton.setAttribute("data-bs-target", "#Update");
 		editButton.addEventListener("click", (e) => {
-			updateStudent(e.target.parentElement.parentElement.dataset.id);
+			showDataStudent(e.target.parentElement.parentElement.dataset.id);
 		});
 		tdEdit.appendChild(editButton);
 		tr.appendChild(tdEdit);
