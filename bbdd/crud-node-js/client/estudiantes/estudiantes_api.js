@@ -6,8 +6,8 @@ const deleteStudentURL = URL + "delete-students/";
 
 async function showDataStudent(id) {
 	try {
-		console.log(URL + `${id}`);
-		const response = await fetch(URL + `${id}`);
+		console.log(`${URL}students/${id}`);
+		const response = await fetch(`${URL}students/${id}`);
 		const data = await response.json();
 		console.log(data);
 	} catch (error) {
