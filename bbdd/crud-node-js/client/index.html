@@ -24,13 +24,63 @@
 			<button
 				class="btn btn-primary"
 				data-bs-toggle="modal"
-				data-bs-target="#Student"
+				data-bs-target="#Add"
 			>
 				Agregar Estudiante
 			</button>
 		</div>
 
-		<div class="modal fade" id="Student" data-bs-backdrop="static">
+		<div class="modal fade" id="Add" data-bs-backdrop="static">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Agregar Estudiante</h5>
+						<button class="btn-close" data-bs-dismiss="modal"></button>
+					</div>
+
+					<div class="modal-body">
+						<form id="AddStudent" class="d-flex flex-column align-items-center">
+							<label for="name">Nombre</label>
+							<input
+								class="form-control w-50 m-2"
+								type="text"
+								name="name"
+								id="name"
+							/>
+							<label for="lastname">Apellidos</label>
+							<input
+								class="form-control w-50 m-2"
+								type="text"
+								name="lastname"
+								id="lastname"
+							/>
+							<label for="gender">Género</label>
+							<select
+								name="gender"
+								class="form-select w-50 m-2"
+								aria-label="Default select example"
+							>
+								<option value="Masculino">Masculino</option>
+								<option value="Femenino">Femenino</option>
+							</select>
+							<label for="age">Edad</label>
+							<input
+								class="form-control w-50 m-2"
+								type="number"
+								name="age"
+								id="age"
+							/>
+
+							<button type="submit" class="btn btn-primary m-5 AddStudent">
+								Aceptar
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="Update" data-bs-backdrop="static">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -55,12 +105,14 @@
 								id="lastname"
 							/>
 							<label for="gender">Género</label>
-							<input
-								class="form-control w-50 m-2"
-								type="text"
+							<select
 								name="gender"
-								id="gender"
-							/>
+								class="form-select w-50 m-2"
+								aria-label="Default select example"
+							>
+								<option value="Masculino">Masculino</option>
+								<option value="Femenino">Femenino</option>
+							</select>
 							<label for="age">Edad</label>
 							<input
 								class="form-control w-50 m-2"
