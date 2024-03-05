@@ -4,12 +4,19 @@ const addStudentURL = URL + "add-students/";
 const editStudentURL = URL + "update-students/";
 const deleteStudentURL = URL + "delete-students/";
 
+const inputId = document.querySelector("#idUpdate");
+const inputName = document.querySelector("#nameUpdate");
+const inputLastName = document.querySelector("#lastnameUpdate");
+const inputAge = document.querySelector("#ageUpdate");
+
 async function showDataStudent(id) {
 	try {
-		console.log(`${URL}students/${id}`);
 		const response = await fetch(`${URL}students/${id}`);
-		const data = await response.json();
-		console.log(data);
+		const student = await response.json();
+		inputId.value = student.id;
+		inputName.value = student.name;
+		inputLastName.value = student.lastname;
+		inputAge.value = student.age;
 	} catch (error) {
 		console.log(error);
 	}
@@ -32,20 +39,19 @@ async function createStudent(Estudiante) {
 	}
 }
 
-async function updateStudent(id) {
+async function updateStudent(Estudiante, id) {
 	try {
-		showDataStudent(id);
-		// const response = await fetch(`${URL}${id}`, {
-		// 	method: "PUT",
-		// 	body: JSON.stringify(Estudiante),
-		// 	headers: {
-		// 		"Content-type": "application/json",
-		// 	},
-		// });
+		const response = await fetch(`${editStudentURL}${id}`, {
+			method: "PUT",
+			body: JSON.stringify(Estudiante),
+			headers: {
+				"Content-type": "application/json",
+			},
+		});
 
-		// if (response.ok) {
-		// 	location.reload();
-		// }
+		if (response.ok) {
+			location.reload();
+		}
 	} catch (error) {
 		console.log(error);
 	}
@@ -68,40 +74,4 @@ async function deleteStudent(id) {
 	}
 }
 
-export { createStudent, updateStudent, deleteStudent };
-
-updateForm.addEventListener("submit", async function (e) {
-	e.preventDefault();
-	const formData = Object.fromEntries(new FormData(this));
-
-	const editedUser = {
-		name: formData.first_name,
-		job: formData.job,
-	};
-	const userId = document.querySelector("[data-id]");
-
-	try {
-		const response = await fetch(
-			`https://reqres.in/api/users/${userId.dataset.id}`,
-			{
-				method: "PUT",
-				body: JSON.stringify(editedUser),
-				headers: {
-					"Content-type": "application/json",
-				},
-			}
-		);
-
-		if (response.ok) {
-			const updateUser = await response.json();
-			const userToUpdate = document.querySelector(
-				`[data-userid = "${userId.dataset.id}"]`
-			);
-			userToUpdate.textContent = updateUser.name;
-			this.reset();
-			updateForm.classList.toggle("hide");
-		}
-	} catch (error) {
-		console.log(error);
-	}
-});
+export { showDataStudent, createStudent, updateStudent, deleteStudent };
