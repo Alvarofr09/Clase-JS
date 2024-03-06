@@ -13,8 +13,12 @@ async function showStudents() {
 			students[i].age,
 			students[i].gender,
 		]);
+		const { editButton, deleteButton } = createActionButtons(students[i].id);
+		const td = document.createElement("td");
+		td.append(editButton, deleteButton);
 
-		tableBody.append(row);
+		row.appendChild(td);
+		tableBody.appendChild(row);
 	}
 }
 
@@ -31,10 +35,20 @@ function createTableRowValues(values) {
 }
 
 function createActionButtons(id) {
-	const editarButton = document.createElement("button");
-	editarButton.textContent = "Editar";
-	editarButton.classList.add("btn", "btn-warning", "me-3");
-	editarButton.addEventListener("click", () => {
+	const editButton = document.createElement("button");
+	editButton.textContent = "Editar";
+	editButton.classList.add("btn", "btn-warning", "me-3");
+	editButton.addEventListener("click", () => {
 		document.location.href = `/update-student/id=${id}`;
 	});
+
+	const deleteButton = document.createElement("button");
+	deleteButton.textContent = "Borrar";
+	deleteButton.classList.add("btn", "btn-danger");
+	deleteButton.addEventListener("click", async function () {
+		await deleteStudent(id);
+		this.closest("tr").remove();
+	});
+
+	return { editButton, deleteButton };
 }
