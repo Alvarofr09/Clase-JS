@@ -14,23 +14,20 @@
 		<title>Estudiantes</title>
 	</head>
 	<body>
-		<div class="mt-5 d-flex justify-content-center">
-			<div class="w-50">
-				<h1 class="text-center mb-5">Estudiantes de Releevant</h1>
-				<table class="table">
-					<thead>
-						<tr class="datos"></tr>
-					</thead>
-					<tbody class="students"></tbody>
-				</table>
-				<button
-					class="btn btn-primary"
-					data-bs-toggle="modal"
-					data-bs-target="#Add"
-				>
-					Agregar Estudiante
-				</button>
-			</div>
+		<div class="container-fluid d-flex flex-column">
+			<table class="table">
+				<thead>
+					<tr class="datos"></tr>
+				</thead>
+				<tbody class="students"></tbody>
+			</table>
+			<button
+				class="btn btn-primary"
+				data-bs-toggle="modal"
+				data-bs-target="#Add"
+			>
+				Agregar Estudiante
+			</button>
 		</div>
 
 		<div class="modal fade" id="Add" data-bs-backdrop="static">
