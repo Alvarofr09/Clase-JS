@@ -1,4 +1,4 @@
-import { deleteStudent, getStudents } from "../client copy/api/students.js";
+import { deleteStudent, getStudents } from "./estudiantes/estudiantes.js";
 
 const tableBody = document.querySelector("#tableBody");
 const addStudentButton = document.querySelector("#addStudent");
